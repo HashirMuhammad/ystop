@@ -2,5 +2,9 @@
 class AppImages {
   AppImages._();
 
-  static const String exampleImage = 'lib/core/assets/images/examples/example-svg.svg';
+  static const String exampleImage =
+      'lib/core/assets/images/examples/example-svg.svg';
+
+  //login-images
+  static const String loginImage = 'assets/images/logo.png';
 }

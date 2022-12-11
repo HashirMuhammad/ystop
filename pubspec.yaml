@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_riverpod: ^2.1.1
+  flutter_svg: ^1.1.6
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -21,8 +22,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   ## HOW TO ADD ASSETS
-  # assets:
-  #   - lib/core/assets/svg/map/bin-map-bad.svg
+  assets:
+    - assets/images/
+    - assets/svgs/
   ## HOME TO ADD FONTS
   # fonts:
   # - family: Oswald

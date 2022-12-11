@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final ChangeNotifierProvider<ExampleProvider> exampleChangeNotifierProvider = ChangeNotifierProvider((ChangeNotifierProviderRef<ExampleProvider> ref) {
+final ChangeNotifierProvider<ExampleProvider> exampleChangeNotifierProvider =
+    ChangeNotifierProvider((ChangeNotifierProviderRef<ExampleProvider> ref) {
   return ExampleProvider(ref);
 });
 
@@ -9,7 +10,6 @@ class ExampleProvider extends ChangeNotifier {
   ExampleProvider(this._ref);
   final Ref _ref;
   int _counterValue = 0;
-  // Project? _currentProject;
 
   int get counterValue => _counterValue;
 
