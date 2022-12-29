@@ -7,6 +7,15 @@ class AppSvg {
       'lib/core/assets/svg/examples/example-svg.svg';
 
   //login-svgs
-  static const String loginEmailSvg = 'assets/svgs/email_icon.svg';
-  static const String loginPasswordSvg = 'assets/svgs/hide_icon.svg';
+  static const String loginEmailSvg = 'assets/svgs/Profile.svg';
+  static const String loginPasswordSvg = 'assets/svgs/Lock.svg';
+  static const String loginVisibilitySvg = 'assets/svgs/Hide.svg';
+
+  //forgotPassword-svgs
+  static const String forgotPasswordEmailSvg = 'assets/svgs/Message.svg';
+  static const String forgotPasswordOtpDoneSvg = 'assets/svgs/OtpDone.svg';
+
+  //home-svgs
+  static const String homeSearchSvg = 'assets/svgs/Search.svg';
+  static const String homeMenuSvg = 'assets/svgs/Menu.svg';
 }

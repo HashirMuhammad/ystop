@@ -22,11 +22,21 @@ class AppColors {
   /// example-color
   static const Color exampleColor = Color(0xFF15A7E8);
 
-  static const Color mainThemeColor = Color.fromRGBO(255, 151, 0, 1);
+  static const Color mainThemeColor = Color(0xFFF79320);
+  static const Color primaryWhite = Color.fromRGBO(255, 255, 255, 1);
+  static const Color primaryBlackColor = Color.fromRGBO(0, 0, 0, 1);
+  static const Color primaryGreyColor = Color.fromRGBO(111, 111, 112, 1);
+  static const Color primaryGreenColor = Color.fromRGBO(27, 138, 17, 1);
 
-  //login-colors
-  static const Color loginBlackColor = Color.fromRGBO(35, 35, 35, 1);
-  static const Color loginTextFieldHintColor = Color.fromRGBO(169, 169, 169, 1);
-  static const Color loginButtonTextColor = Color.fromRGBO(255, 255, 255, 1);
-  static const Color loginRememberColor = Color.fromRGBO(119, 118, 118, 1);
+  static const Color primaryOtpPinColor = Color.fromRGBO(233, 254, 199, 1);
+  // //login-colors
+  // static const Color loginBlackColor = Color.fromRGBO(0, 0, 0, 1);
+  // static const Color loginTextFieldHintColor = Color.fromRGBO(111, 111, 112, 1);
+  // static const Color loginButtonTextColor = Color.fromRGBO(255, 255, 255, 1);
+  // static const Color loginErrorBorderColor = Color.fromRGBO(255, 47, 47, 1);
+
+  // //forgotPassword-colors
+  // static const Color forgotPasswordBlackColor = Color.fromRGBO(0, 0, 0, 1);
+  // static const Color forgotPasswordTextFieldHintColor =
+  //     Color.fromRGBO(111, 111, 112, 1);
 }

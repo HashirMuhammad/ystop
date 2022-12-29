@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ystop_mystop/core/app/colors.dart';
+import 'package:ystop_mystop/core/app/images.dart';
 import 'package:ystop_mystop/core/app/styles.dart';
+import 'package:ystop_mystop/core/app/svg.dart';
+import 'package:ystop_mystop/core/app/texts.dart';
 import 'package:ystop_mystop/core/providers/example_autodispose_provider.dart';
 import 'package:ystop_mystop/core/providers/example_changenotifier_provider.dart';
 import 'package:ystop_mystop/core/providers/example_provider.dart';
 import 'package:ystop_mystop/core/utils/app_utils.dart';
-import 'package:ystop_mystop/views/login.dart';
+import 'package:ystop_mystop/views/auth/login.dart';
 
 class HomeView extends ConsumerStatefulWidget {
   const HomeView({
@@ -21,74 +26,162 @@ class _HomeViewState extends ConsumerState<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: const Text('Welcome!'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              // Read a value or call a function using a provider like below:
-              ref.read(exampleProvider).exampleVariableHome,
-              style: AppStyles.exampleTextstyle2,
+        backgroundColor: AppColors.primaryWhite,
+        elevation: 0,
+        title: Image.asset(
+          AppImages.logoImage,
+          height: size.height * 0.1,
+          width: size.width * 0.30,
+        ),
+        actions: [
+          SvgPicture.asset(
+            AppSvg.homeSearchSvg,
+            height: 24,
+            width: 24,
+          ),
+          SizedBox(
+            width: size.width * 0.04,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
+            child: SvgPicture.asset(
+              AppSvg.homeMenuSvg,
+              height: 24,
+              width: 24,
             ),
-            const SizedBox(height: 30),
-            Consumer(
-              builder: (BuildContext context, WidgetRef ref, Widget? child) {
-                // Register a listener that watches the counterValue variable,
-                // when its value changes, then the returned widget in this builder scope is rebuilt
-                // with the new value for the counterValue variable
-                int counterValue = ref.watch(exampleChangeNotifierProvider).counterValue;
-                int counterValue2 = ref.watch(exampleAutoDisposeProvider).counterValue;
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
+          ),
+        ],
+      ),
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              children: [
+                Image.asset(
+                  AppImages.homeAvatar,
+                  height: size.height * 0.1,
+                  width: size.width * 0.15,
+                ),
+                SizedBox(
+                  width: size.width * 0.04,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Text(
-                      'Counter value (click button in bottom right):\n$counterValue',
-                      textAlign: TextAlign.center,
+                      "Good Morning, Mr Abc",
+                      style: AppStyles.homeGreet,
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
                     Text(
-                      'AutoDisposed counter value (click button in bottom right):\n$counterValue2',
-                      textAlign: TextAlign.center,
+                      AppTexts.homeWelcome,
+                      style: AppStyles.homeWelcome,
                     ),
                   ],
-                );
-              },
+                ),
+              ],
             ),
-            const SizedBox(height: 30),
-            TextButton(
-              style: ButtonStyle(
-                overlayColor: MaterialStateProperty.all(Colors.transparent),
+          ),
+          SizedBox(
+            height: size.height * 0.02,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container(
+                width: size.width * 0.43,
+                height: size.height * 0.25,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: AppColors.mainThemeColor,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(AppImages.homeJobList),
+                    SizedBox(
+                      height: size.height * 0.03,
+                    ),
+                    Text(
+                      AppTexts.homeJobList,
+                      style: AppStyles.homeCategory,
+                    )
+                  ],
+                ),
               ),
-              onPressed: () {
-                // Navigate to the login screen
-                Navigator.of(context).pushAndRemoveUntil<void>(
-                  MaterialPageRoute<void>(builder: (BuildContext context) => const LoginView()),
-                  ModalRoute.withName('/login'),
-                );
-
-                // Show message to user
-                AppUtils.showSnackbar(this, 'Logged out!');
-              },
-              child: Text(
-                'Logout (click me)',
-                style: AppStyles.exampleTextstyle,
+              SizedBox(
+                width: size.width * 0.43,
+                height: size.height * 0.25,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(AppImages.homeReceivedMedia),
+                    SizedBox(
+                      height: size.height * 0.03,
+                    ),
+                    Text(
+                      AppTexts.homeReceivedMedia,
+                      style: AppStyles.homeCategory,
+                    )
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
+            ],
+          ),
+          SizedBox(
+            height: size.height * 0.02,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(
+                width: size.width * 0.43,
+                height: size.height * 0.25,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(AppImages.homeMoveMedia),
+                    SizedBox(
+                      height: size.height * 0.03,
+                    ),
+                    Text(
+                      AppTexts.homeMoveMedia,
+                      style: AppStyles.homeCategory,
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                width: size.width * 0.43,
+                height: size.height * 0.25,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(AppImages.homeDestroy),
+                    Text(
+                      AppTexts.homeDestroy,
+                      style: AppStyles.homeCategory,
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Tell the change notifier provider to increment the counter value
-          ref.read(exampleChangeNotifierProvider).incrementCounter();
-          ref.read(exampleAutoDisposeProvider).incrementCounter();
-        },
-        child: const Icon(Icons.add),
+        backgroundColor: AppColors.mainThemeColor,
+        onPressed: () {},
+        child: const Icon(Icons.arrow_forward),
       ),
     );
   }
