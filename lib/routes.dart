@@ -12,6 +12,7 @@ class Routes {
   static const String forgotPassword = '/forgotPassword';
   static const String verifiyingForgotPasswordOTP =
       '/verifiyingForgotPasswordOTP';
+
   static final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
     login: (BuildContext context) => const LoginView(),
     home: (BuildContext context) => const HomeView(),

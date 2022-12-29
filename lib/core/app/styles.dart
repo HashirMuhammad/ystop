@@ -145,4 +145,30 @@ class AppStyles {
     fontFamily: 'Graphik',
     fontSize: 16.0,
   );
+
+  //jobList
+  static TextStyle jobListHeadingStyle = const TextStyle(
+    color: AppColors.primaryBlackColor,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'Graphik',
+    fontSize: 16.0,
+  );
+  static TextStyle jobListTextStyle = const TextStyle(
+    color: AppColors.primaryBlackColor,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Graphik',
+    fontSize: 14.0,
+  );
+  static TextStyle jobListTextStyleGrey = const TextStyle(
+    color: AppColors.primaryGreyColor,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Graphik',
+    fontSize: 14.0,
+  );
+  static TextStyle jobListTextStyleGreen = const TextStyle(
+    color: AppColors.primaryGreenColor,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Graphik',
+    fontSize: 12.0,
+  );
 }

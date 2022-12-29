@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,6 +12,7 @@ import 'package:ystop_mystop/core/providers/example_changenotifier_provider.dart
 import 'package:ystop_mystop/core/providers/example_provider.dart';
 import 'package:ystop_mystop/core/utils/app_utils.dart';
 import 'package:ystop_mystop/views/auth/login.dart';
+import 'package:ystop_mystop/views/fragments/job_list_fragment.dart';
 
 class HomeView extends ConsumerStatefulWidget {
   const HomeView({
@@ -29,6 +31,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       key: _scaffoldKey,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: AppColors.primaryWhite,
         elevation: 0,
@@ -95,27 +98,36 @@ class _HomeViewState extends ConsumerState<HomeView> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container(
-                width: size.width * 0.43,
-                height: size.height * 0.25,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: AppColors.mainThemeColor,
-                  ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(AppImages.homeJobList),
-                    SizedBox(
-                      height: size.height * 0.03,
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).push<void>(
+                    CupertinoPageRoute<void>(
+                        builder: (BuildContext context) =>
+                            const JobListFragment()),
+                  );
+                },
+                child: Container(
+                  width: size.width * 0.43,
+                  height: size.height * 0.25,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: AppColors.mainThemeColor,
                     ),
-                    Text(
-                      AppTexts.homeJobList,
-                      style: AppStyles.homeCategory,
-                    )
-                  ],
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(AppImages.homeJobList),
+                      SizedBox(
+                        height: size.height * 0.03,
+                      ),
+                      Text(
+                        AppTexts.homeJobList,
+                        style: AppStyles.homeCategory,
+                      )
+                    ],
+                  ),
                 ),
               ),
               SizedBox(

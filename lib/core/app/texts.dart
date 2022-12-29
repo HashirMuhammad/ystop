@@ -27,4 +27,14 @@ reset your password''';
   static const String homeReceivedMedia = 'Received Media';
   static const String homeDestroy = 'Destroy';
   static const String homeMoveMedia = 'Move Media';
+
+  //jobLists-texts
+  static const String jobList = 'Job List';
+  static const String jobListSearch = 'Search By Council';
+  static const String jobListSearchTitle = 'Search By Title';
+  static const String jobListCouncilName = 'Council name: ';
+  static const String jobListCampaignDate = 'Campaign Date: ';
+  static const String jobListJobStatus = 'Job Status: ';
+  static const String jobListQuantity = 'Total Quantity: ';
+  static const String jobListRequired = 'Required: ';
 }

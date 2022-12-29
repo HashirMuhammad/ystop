@@ -20,4 +20,7 @@ class AppImages {
   static const String homeReceivedMedia = 'assets/images/ReceivedMedia.png';
   static const String homeDestroy = 'assets/images/Destroy.png';
   static const String homeMoveMedia = 'assets/images/MoveMedia.png';
+
+  //jobList-images
+  static const String jobListSelectedJob = 'assets/images/SelectedJob.png';
 }

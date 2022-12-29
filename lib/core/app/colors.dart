@@ -29,6 +29,8 @@ class AppColors {
   static const Color primaryGreenColor = Color.fromRGBO(27, 138, 17, 1);
 
   static const Color primaryOtpPinColor = Color.fromRGBO(233, 254, 199, 1);
+  static const Color primaryJobListContainerColor =
+      Color.fromRGBO(246, 246, 246, 1);
   // //login-colors
   // static const Color loginBlackColor = Color.fromRGBO(0, 0, 0, 1);
   // static const Color loginTextFieldHintColor = Color.fromRGBO(111, 111, 112, 1);

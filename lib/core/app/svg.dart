@@ -18,4 +18,9 @@ class AppSvg {
   //home-svgs
   static const String homeSearchSvg = 'assets/svgs/Search.svg';
   static const String homeMenuSvg = 'assets/svgs/Menu.svg';
+
+  //jobList-svgs
+  static const String jobListInProgressSvg = 'assets/svgs/InProgress.svg';
+  static const String jobListCompletedSvg = 'assets/svgs/Completed.svg';
+  static const String jobListSelectedSvg = 'assets/svgs/Selected.svg';
 }
