@@ -23,4 +23,15 @@ class AppImages {
 
   //jobList-images
   static const String jobListSelectedJob = 'assets/images/SelectedJob.png';
+
+  
+  /// received media
+  static const String verificationImage = 'assets/images/Verification.png';
+    static const String scanImage = 'assets/images/Scan.png';
+        static const String scanQr = 'assets/images/ScanQr.png';
+
+
+        static const String qrDummy = 'assets/images/QrDummy.png';
+
+ 
 }

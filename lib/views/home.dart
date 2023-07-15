@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:ystop_mystop/core/app/colors.dart';
 import 'package:ystop_mystop/core/app/images.dart';
 import 'package:ystop_mystop/core/app/styles.dart';
@@ -11,6 +12,7 @@ import 'package:ystop_mystop/core/providers/example_autodispose_provider.dart';
 import 'package:ystop_mystop/core/providers/example_changenotifier_provider.dart';
 import 'package:ystop_mystop/core/providers/example_provider.dart';
 import 'package:ystop_mystop/core/utils/app_utils.dart';
+import 'package:ystop_mystop/routes.dart';
 import 'package:ystop_mystop/views/auth/login.dart';
 import 'package:ystop_mystop/views/fragments/job_list_fragment.dart';
 
@@ -130,21 +132,26 @@ class _HomeViewState extends ConsumerState<HomeView> {
                   ),
                 ),
               ),
-              SizedBox(
-                width: size.width * 0.43,
-                height: size.height * 0.25,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(AppImages.homeReceivedMedia),
-                    SizedBox(
-                      height: size.height * 0.03,
-                    ),
-                    Text(
-                      AppTexts.homeReceivedMedia,
-                      style: AppStyles.homeCategory,
-                    )
-                  ],
+              InkWell(
+                onTap: (){
+                  Get.toNamed(AppRoutes.receivedMediaScanQr);
+                },
+                child: SizedBox(
+                  width: size.width * 0.43,
+                  height: size.height * 0.25,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(AppImages.homeReceivedMedia),
+                      SizedBox(
+                        height: size.height * 0.03,
+                      ),
+                      Text(
+                        AppTexts.homeReceivedMedia,
+                        style: AppStyles.homeCategory,
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -155,35 +162,47 @@ class _HomeViewState extends ConsumerState<HomeView> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SizedBox(
-                width: size.width * 0.43,
-                height: size.height * 0.25,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(AppImages.homeMoveMedia),
-                    SizedBox(
-                      height: size.height * 0.03,
-                    ),
-                    Text(
-                      AppTexts.homeMoveMedia,
-                      style: AppStyles.homeCategory,
-                    )
-                  ],
+              InkWell(
+                onTap: (){
+                Get.toNamed(AppRoutes.moveMediaScanQrPage);
+                  
+                },
+                child: SizedBox(
+                  width: size.width * 0.43,
+                  height: size.height * 0.25,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(AppImages.homeMoveMedia),
+                      SizedBox(
+                        height: size.height * 0.03,
+                      ),
+                      Text(
+                        AppTexts.homeMoveMedia,
+                        style: AppStyles.homeCategory,
+                      )
+                    ],
+                  ),
                 ),
               ),
-              SizedBox(
-                width: size.width * 0.43,
-                height: size.height * 0.25,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(AppImages.homeDestroy),
-                    Text(
-                      AppTexts.homeDestroy,
-                      style: AppStyles.homeCategory,
-                    )
-                  ],
+              InkWell(
+                onTap: (){
+                   Get.toNamed(AppRoutes.destroyMediaScanQrPage);
+                  
+                },
+                child: SizedBox(
+                  width: size.width * 0.43,
+                  height: size.height * 0.25,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(AppImages.homeDestroy),
+                      Text(
+                        AppTexts.homeDestroy,
+                        style: AppStyles.homeCategory,
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],

@@ -171,4 +171,24 @@ class AppStyles {
     fontFamily: 'Graphik',
     fontSize: 12.0,
   );
+
+
+  //Receive Media
+  static TextStyle receiveMediaHeadingStyle = const TextStyle(
+    color: AppColors.primaryBlackColor,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'Graphik',
+    fontSize: 16.0,
+  );
+
+
+  /// custom text style
+  //Receive Media
+  static TextStyle textStyleCustom = const TextStyle(
+    color: AppColors.primaryBlackColor,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'Graphik',
+    fontSize: 16.0,
+  );
+  
 }

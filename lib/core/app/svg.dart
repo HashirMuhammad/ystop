@@ -23,4 +23,7 @@ class AppSvg {
   static const String jobListInProgressSvg = 'assets/svgs/InProgress.svg';
   static const String jobListCompletedSvg = 'assets/svgs/Completed.svg';
   static const String jobListSelectedSvg = 'assets/svgs/Selected.svg';
+
+
+
 }

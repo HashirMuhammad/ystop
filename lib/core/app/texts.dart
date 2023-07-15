@@ -37,4 +37,35 @@ reset your password''';
   static const String jobListJobStatus = 'Job Status: ';
   static const String jobListQuantity = 'Total Quantity: ';
   static const String jobListRequired = 'Required: ';
+
+
+  /// Received Media
+ static const String receiveMedia = 'Receive Media';
+ static const String verification = 'Verification';
+  static const String areYouSureReceivedMedia = 'Are you sure received media is same according to requirement?';
+ static const String yes = 'Yes';
+ static const String no = 'No';
+ static const String submit = 'Submit';
+
+ static const String pigeonholeList = 'Pigeonhole List';
+
+
+ /// move media
+ static const String detail = 'Detail';
+ static const String moveMedia = 'Move media';
+
+ /// destroy media
+ static const String destroyMedia = 'Destroy media';
+  static const String pigeonHoleID = 'Pigeonhole ID';
+   static const String destroy = 'Destroy';
+   static const String confirmation = 'Confirmation';
+     static const String destroyMediaConfrimation = 'Are you sure, you want to destroy this media?';
+
+
+
+/// btn text
+   static const String scanQrCode = 'Scan QR Code';
+   static const String done = 'Done';
+
+
 }
