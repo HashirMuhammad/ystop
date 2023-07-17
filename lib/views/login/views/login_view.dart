@@ -9,12 +9,13 @@ import 'package:ystop_mystop/core/app/styles.dart';
 import 'package:ystop_mystop/core/app/svg.dart';
 import 'package:ystop_mystop/core/app/texts.dart';
 import 'package:ystop_mystop/core/extensions/string_extensions.dart';
+import 'package:ystop_mystop/core/widgets/loading_widget.dart';
 
 import '../controller/login_controller.dart';
 
 
-class LoginView2 extends GetView<LoginController> {
-  const LoginView2({
+class LoginView extends GetView<LoginController> {
+  const LoginView({
     super.key,
   });
 
@@ -26,115 +27,121 @@ class LoginView2 extends GetView<LoginController> {
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Center(
-          child: GetBuilder<LoginController>(
+          child: GetX<LoginController>(
             init: LoginController(),
             builder: (_){
-              return Form(
-                key: controller.loginFormKey,
-                child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(size.width * 0.06,
-                        size.height * 0.03, size.width * 0.09, size.height * 0.02),
+              return Stack(
+                children: <Widget> [
+                  Form(
+                    key: controller.loginFormKey,
                     child: Column(
-                      children: <Widget>[
-                        Image.asset(
-                          AppImages.logoImage,
-                          height: size.height * 0.15,
-                          width: size.width * 0.4,
-                        ),
-                        SizedBox(
-                          height: size.height * 0.02,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(size.width * 0.06,
+                            size.height * 0.03, size.width * 0.09, size.height * 0.02),
+                        child: Column(
                           children: <Widget>[
-                            Text(
-                              AppTexts.loginSubHeading,
-                              style: AppStyles.loginSubHeadingStyle,
+                            Image.asset(
+                              AppImages.logoImage,
+                              height: size.height * 0.15,
+                              width: size.width * 0.4,
                             ),
                             SizedBox(
-                              width: size.width * 0.01,
+                              height: size.height * 0.02,
                             ),
-                            Text(
-                              AppTexts.loginHeading,
-                              style: AppStyles.loginHeadingStyle,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  AppTexts.loginSubHeading,
+                                  style: AppStyles.loginSubHeadingStyle,
+                                ),
+                                SizedBox(
+                                  width: size.width * 0.01,
+                                ),
+                                Text(
+                                  AppTexts.loginHeading,
+                                  style: AppStyles.loginHeadingStyle,
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: size.height * 0.01,
+                            ),
+                            SizedBox(
+                              height: size.height * 0.04,
+                            ),
+                            _buildTextFieldEmail(context),
+                            SizedBox(
+                              height: size.height * 0.03,
+                            ),
+                            _buildTextFieldPassword(context),
+                            SizedBox(
+                              height: size.height * 0.02,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: size.width * 0.04),
+                              child: Row(
+                                children: <Widget>[
+                                  Obx(() =>  SizedBox(
+                                        height: size.height * 0.03,
+                                        width: size.width * 0.03,
+                                        child: Checkbox(
+                                          value: controller.isRememberMe.value,
+                                          onChanged: (bool? value) {
+                                        controller.isRememberMe.toggle();
+                                          },
+                                          activeColor: AppColors.mainThemeColor,
+                                        ),
+                                      ))
+                                ,
+                                  SizedBox(
+                                    width: size.width * 0.03,
+                                  ),
+                                  Text(
+                                    AppTexts.loginRemember,
+                                    style: AppStyles.loginRememberStyle,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
-                        SizedBox(
-                          height: size.height * 0.01,
+                      ),
+                      _buildLoginButton(context),
+                      SizedBox(
+                        height: size.height * 0.02,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          
+                        },
+                        child: Text(
+                          AppTexts.loginForgotPassword,
+                          style: AppStyles.loginForgotPasswordStyle,
                         ),
-                        SizedBox(
-                          height: size.height * 0.04,
-                        ),
-                        _buildTextFieldEmail(context),
-                        SizedBox(
-                          height: size.height * 0.03,
-                        ),
-                        _buildTextFieldPassword(context),
-                        SizedBox(
-                          height: size.height * 0.02,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: size.width * 0.04),
-                          child: Row(
-                            children: <Widget>[
-                              Obx(() =>  SizedBox(
-                                    height: size.height * 0.03,
-                                    width: size.width * 0.03,
-                                    child: Checkbox(
-                                      value: controller.isRememberMe.value,
-                                      onChanged: (bool? value) {
-                                    controller.isRememberMe.toggle();
-                                      },
-                                      activeColor: AppColors.mainThemeColor,
-                                    ),
-                                  ))
-                            ,
-                              SizedBox(
-                                width: size.width * 0.03,
+                      ),
+                      SizedBox(
+                        height: size.height * 0.02,
+                      ),
+                      Image.asset(
+                        AppImages.SecureImage,
+                        height: size.height * 0.2,
+                        width: size.width * 0.4,
+                      ),
+                      SizedBox(
+                        height: size.height * 0.02,
+                      ),
+                      Text(
+                        AppTexts.loginSupportHelp,
+                        style: AppStyles.loginSupportHelpStyle,
+                      )
+                    ],
                               ),
-                              Text(
-                                AppTexts.loginRemember,
-                                style: AppStyles.loginRememberStyle,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
-                  _buildLoginButton(context),
-                  SizedBox(
-                    height: size.height * 0.02,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      
-                    },
-                    child: Text(
-                      AppTexts.loginForgotPassword,
-                      style: AppStyles.loginForgotPasswordStyle,
-                    ),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.02,
-                  ),
-                  Image.asset(
-                    AppImages.SecureImage,
-                    height: size.height * 0.2,
-                    width: size.width * 0.4,
-                  ),
-                  SizedBox(
-                    height: size.height * 0.02,
-                  ),
-                  Text(
-                    AppTexts.loginSupportHelp,
-                    style: AppStyles.loginSupportHelpStyle,
-                  )
+                     if(controller.isLoading.value == LoginLoadingType.parent)
+                     const LoadingWidget()
                 ],
-                          ),
               );
             },
           ),
@@ -203,15 +210,13 @@ class LoginView2 extends GetView<LoginController> {
   }
 
   _buildLoginButton(BuildContext context) {
-    return Consumer(
-        builder: (BuildContext context, WidgetRef ref, Widget? child) {
-      return Padding(
+    return Padding(
         padding: EdgeInsets.symmetric(
             horizontal: MediaQuery.of(context).size.width * 0.065),
         child: InkWell(
           onTap: () async {
         if(controller.loginFormKey.currentState!.validate()){
-
+            controller.loginUser();
         }
           },
           child: Container(
@@ -230,6 +235,5 @@ class LoginView2 extends GetView<LoginController> {
           ),
         ),
       );
-    });
   }
 }

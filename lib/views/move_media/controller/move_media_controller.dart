@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+
+
+
 class MoveMediaController extends GetxController with MoveMediaListingPageInitializer,MoveMediaDetailPageInitializer{
+  @override
+  Future<void> moveMedia() {
+    throw UnimplementedError();
+  }
  
 }
 
@@ -17,5 +24,10 @@ mixin MoveMediaDetailPageInitializer{
  final TextEditingController quantitity4TextEditingController = TextEditingController();
   final TextEditingController numberTextEditingController = TextEditingController();
 
+
+
+/// API'S
+ 
+ Future<void> moveMedia();
 
 }

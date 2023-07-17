@@ -16,8 +16,8 @@ import 'package:ystop_mystop/routes.dart';
 import 'package:ystop_mystop/views/auth/login.dart';
 import 'package:ystop_mystop/views/fragments/job_list_fragment.dart';
 
-class HomeView extends ConsumerStatefulWidget {
-  const HomeView({
+class HomeView2 extends ConsumerStatefulWidget {
+  const HomeView2({
     super.key,
   });
 
@@ -25,7 +25,7 @@ class HomeView extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends ConsumerState<HomeView> {
+class _HomeViewState extends ConsumerState<HomeView2> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override

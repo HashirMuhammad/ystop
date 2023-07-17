@@ -44,7 +44,7 @@ class Routes {
 
   static final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
    // login: (BuildContext context) => const LoginView(),
-    home: (BuildContext context) => const HomeView(),
+ //   home: (BuildContext context) => const HomeView(),
     forgotPassword: (BuildContext context) => const ForgotPasswordView(),
     verifiyingForgotPasswordOTP: (BuildContext context) =>
         const VerifyingForgotPasswordOTPView(),

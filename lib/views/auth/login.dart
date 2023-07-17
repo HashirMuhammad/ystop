@@ -13,16 +13,16 @@ import 'package:ystop_mystop/views/widgets/example_loading_spinner.dart';
 
 import '../../core/providers/login_provider.dart';
 
-class LoginView extends ConsumerStatefulWidget {
-  const LoginView({
+class LoginView2 extends ConsumerStatefulWidget {
+  const LoginView2({
     super.key,
   });
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _LoginViewState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _LoginView2State();
 }
 
-class _LoginViewState extends ConsumerState<LoginView> {
+class _LoginView2State extends ConsumerState<LoginView2> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -242,11 +242,11 @@ class _LoginViewState extends ConsumerState<LoginView> {
             // await Future<void>.delayed(const Duration(seconds: 2));
 
             // Navigate to the home screen
-            Navigator.of(context).pushAndRemoveUntil<void>(
-              CupertinoPageRoute<void>(
-                  builder: (BuildContext context) => const HomeView()),
-              ModalRoute.withName('/home'),
-            );
+            // Navigator.of(context).pushAndRemoveUntil<void>(
+            //   CupertinoPageRoute<void>(
+            //       builder: (BuildContext context) => const HomeView()),
+            //   ModalRoute.withName('/home'),
+            // );
           },
           child: Container(
             height: MediaQuery.of(context).size.height * 0.075,
