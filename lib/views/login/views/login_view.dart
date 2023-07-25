@@ -10,6 +10,7 @@ import 'package:ystop_mystop/core/app/svg.dart';
 import 'package:ystop_mystop/core/app/texts.dart';
 import 'package:ystop_mystop/core/extensions/string_extensions.dart';
 import 'package:ystop_mystop/core/widgets/loading_widget.dart';
+import 'package:ystop_mystop/routes.dart';
 
 import '../controller/login_controller.dart';
 
@@ -114,7 +115,7 @@ class LoginView extends GetView<LoginController> {
                       ),
                       InkWell(
                         onTap: () {
-                          
+                          Get.toNamed(AppRoutes.forgotPasswordPage);
                         },
                         child: Text(
                           AppTexts.loginForgotPassword,

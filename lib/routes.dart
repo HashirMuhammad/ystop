@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ystop_mystop/views/auth/forgot_password.dart';
 import 'package:ystop_mystop/views/auth/verifying_forgot_password_otp.dart';
-import 'package:ystop_mystop/views/home.dart';
 
 
 
@@ -27,6 +25,11 @@ class AppRoutes {
     static const String destroyMediaListingPage = '/destroyMediaListingPage';
         static const String destroyMediaScanQrPage = '/destroyMediaScanQrPage';
 
+
+        /// forgot password
+        static const String forgotPasswordPage = '/forgotPasswordPage';
+
+
 }
 
 
@@ -45,7 +48,7 @@ class Routes {
   static final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
    // login: (BuildContext context) => const LoginView(),
  //   home: (BuildContext context) => const HomeView(),
-    forgotPassword: (BuildContext context) => const ForgotPasswordView(),
+    //forgotPassword: (BuildContext context) => const ForgotPasswordView(),
     verifiyingForgotPasswordOTP: (BuildContext context) =>
         const VerifyingForgotPasswordOTPView(),
   };

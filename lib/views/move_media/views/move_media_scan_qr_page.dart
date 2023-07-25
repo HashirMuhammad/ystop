@@ -20,11 +20,13 @@ class MoveMediaMediaScanQRPage extends GetView<MoveMediaController>{
         init: MoveMediaController(),
         builder: (_)=> ScanQrCode(
           onPressedScanQrCode: () {
-            Get.to(QRCodeScannerWidget(
-              numberController: controller.numberTextEditingController ,
-             onPressedDoneBtn: (){
-              Get.toNamed(AppRoutes.moveMediaDetailPage);
-             },));
+              Get.toNamed(AppRoutes.moveMediaListingPage);
+
+            // Get.to(QRCodeScannerWidget(
+            //   numberController: controller.numberTextEditingController ,
+            //  onPressedDoneBtn: (){
+            //   Get.toNamed(AppRoutes.moveMediaDetailPage);
+            //  },));
         
           },
         ),

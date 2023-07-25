@@ -23,7 +23,7 @@ class ApiClient {
 
   }
 
-  Future<dynamic> apiClientRequest({  required String endPoint, Map<String, dynamic>? body, required String method }) async {
+  Future<dynamic> apiClientRequest({  required String endPoint, required String method, Map<String, dynamic>? body }) async {
     try{
          LoginModel? storedLoginModel = AppPreferences.getAuthenticationData();
           

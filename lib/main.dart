@@ -7,6 +7,7 @@ import 'package:ystop_mystop/views/auth/login.dart';
 import 'package:ystop_mystop/views/auth/verifying_forgot_password_otp.dart';
 import 'package:ystop_mystop/views/destroy_media/views/destroy_media_listing.dart';
 import 'package:ystop_mystop/views/destroy_media/views/destroy_media_scan_qr_code_page.dart';
+import 'package:ystop_mystop/views/forgot_password/views/forgot_password_view.dart';
 import 'package:ystop_mystop/views/home.dart';
 import 'package:ystop_mystop/views/home/views/home_view.dart';
 import 'package:ystop_mystop/views/move_media/views/move_media_detail.dart';
@@ -32,7 +33,7 @@ class App extends StatelessWidget {
     final Map<String, WidgetBuilder> appRoutes = {
       AppRoutes.login: (context) => const LoginView(),
       AppRoutes.home: (context) => const HomeView(),
-      AppRoutes.forgotPassword: (context) => const ForgotPasswordView(),
+      // AppRoutes.forgotPassword: (context) => const ForgotPasswordView(),
       AppRoutes.receivedMediaScanQr: (context) => const ReceiveMediaScanQRPage(),
       AppRoutes.verifiyingForgotPasswordOTP: (context) =>
           const VerifyingForgotPasswordOTPView(),
@@ -46,6 +47,7 @@ class App extends StatelessWidget {
        AppRoutes.moveMediaScanQrPage: (context) => const MoveMediaMediaScanQRPage(),
        AppRoutes.destroyMediaScanQrPage: (context) => const DestroyMediaScanQRPage(),
 
+       AppRoutes.forgotPasswordPage: (context) => const ForgotPasswordView(),
 
     };
 

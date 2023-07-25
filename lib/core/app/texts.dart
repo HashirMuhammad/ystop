@@ -68,4 +68,7 @@ reset your password''';
    static const String done = 'Done';
 
 
+/// error text
+
+static const String someThingWentWrong = 'Something went wrong';
 }
