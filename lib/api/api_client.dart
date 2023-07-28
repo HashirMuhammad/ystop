@@ -15,12 +15,55 @@ class ApiClient {
     required this.environment,
   }) {
     _baseUrl = environment['base_url'];
-    httpClient = Dio(BaseOptions(baseUrl: _baseUrl,connectTimeout: 60 * 1000,receiveTimeout: 90 * 1000,followRedirects: false));
+    httpClient = Dio(BaseOptions(baseUrl: _baseUrl,connectTimeout: 60 * 1000,receiveTimeout: 90 * 1000,followRedirects: true));
     // httpClient = Dio(BaseOptions(baseUrl: _baseUrl));
     httpClient.interceptors.addAll({
       AppInterceptors(httpClient, environment),
     });
 
+  }
+
+  Future<dynamic> apiClientRequest2({  required String endPoint, required String method,String? body }) async {
+    try{
+         LoginModel? storedLoginModel = AppPreferences.getAuthenticationData();
+          
+
+        final options = Options(headers: {
+        'Authorization': 'Bearer ${storedLoginModel?.result?.accessToken}', // Add the authToken to the request headers
+      },
+      followRedirects: true);
+
+
+      AppLogger.log('$endPoint baseUrl[$method]: ${_baseUrl + endPoint}');
+      // ignore: always_specify_types
+      Response? response;
+      if (method == 'POST') {
+        AppLogger.log('$endPoint body[$method]: ${jsonEncode(body)}');
+        response = await httpClient.post(
+          _baseUrl + endPoint,
+          data: body,
+          options: options
+        );
+      } else {
+        AppLogger.log('$endPoint params[$method]: ${_baseUrl + endPoint}');
+          response = await httpClient.get(
+          _baseUrl + endPoint,
+          options: options, // Pass the headers in the options
+        );
+      }
+      if (response.statusCode == 200) {
+        AppLogger.log('$endPoint response[$method]: ${jsonEncode(response.data)}');
+       // if (response.data['success']) {
+          return response.data;
+      //  } else {
+      //    throw Exception(response.data['errorMessage']);
+      //  }
+      } else {
+        throw Exception(response.statusMessage);
+      }
+    }catch(e){
+      throw Exception(e);
+    }
   }
 
   Future<dynamic> apiClientRequest({  required String endPoint, required String method, Map<String, dynamic>? body }) async {

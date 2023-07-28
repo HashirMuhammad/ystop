@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ystop_mystop/core/app/snackbar.dart';
@@ -22,66 +24,34 @@ class ReceiveMediaController extends GetxController  with ReceiveMediaInitialize
     super.onInit();
   }
 
-  @override
-  Future<void> receiveMedia() async {
-    isLoading.value = ReceiveMediaLoadingType.parent;
-    try {
-      Map<String, dynamic> receiveMediaRequestBody = <String, dynamic>{
-        'qrCodes': [
-          {
-            'qrCode': 'OSB1',
-            'quantity': int.parse(numberTextEditingController.text)
-          },
-          {
-            'qrCode': 'OSB2',
-            'quantity': int.parse(numberTextEditingController.text)
-          }
-        ]
-      };
-      dynamic reponse =
-          await receiveMediaRepository.receiveMedia(receiveMediaRequestBody);
-      if (reponse != null) {
-        if (reponse['message'] == 'Success') {
-          CustomSnackbar.showSuccess('Success');
-        } else if (reponse['message'] == 'The given data was invalid.') {
-          CustomSnackbar.showError('The given data was invalid.');
-        }
-      }
-    } catch (e) {
-      print(e.toString());
-      e.toString();
-    } finally {
-      isLoading.value = ReceiveMediaLoadingType.hide;
-    }
-    return Future<void>.value(null);
-  }
 
-  @override
-  Future<void> getMediaLocations() async{
-    isLoading.value = ReceiveMediaLoadingType.parent;
-    try {
-      dynamic response = await receiveMediaRepository.getMediaLocations();
-      if(response !=null){
-        getMediaLocationsModel = GetMediaLocationsModel.fromJson(response);
-        print(getMediaLocationsModel.toJson());
-        Get.toNamed(AppRoutes.receivedMediaListingPage);
-      } 
-      else{
-        CustomSnackbar.showError(AppTexts.someThingWentWrong);
-      }
-    } catch (e) {
-      CustomSnackbar.showError(e.toString());
 
-      e.toString();
-    }
-   finally{
-    isLoading.value = ReceiveMediaLoadingType.hide;
-   }
-    return Future<void>.value(null);
-  }
+  // @override
+  // Future<void> getMediaLocations() async{
+  //   isLoading.value = ReceiveMediaLoadingType.parent;
+  //   try {
+  //     dynamic response = await receiveMediaRepository.getMediaLocations();
+  //     if(response !=null){
+  //       getMediaLocationsModel = GetMediaLocationsModel.fromJson(response);
+  //       print(getMediaLocationsModel.toJson());
+  //       Get.toNamed(AppRoutes.receivedMediaListingPage);
+  //     } 
+  //     else{
+  //       CustomSnackbar.showError(AppTexts.someThingWentWrong);
+  //     }
+  //   } catch (e) {
+  //     CustomSnackbar.showError(e.toString());
+
+  //     e.toString();
+  //   }
+  //  finally{
+  //   isLoading.value = ReceiveMediaLoadingType.hide;
+  //  }
+  //   return Future<void>.value(null);
+  // }
   
   @override
-  Future<void> getMediaFile() async{
+  Future<void> getReceiveMediaFile() async{
       isLoading.value = ReceiveMediaLoadingType.parent;
     try {
       dynamic response = await receiveMediaRepository.getMediaFile();
@@ -104,6 +74,48 @@ class ReceiveMediaController extends GetxController  with ReceiveMediaInitialize
 
  return Future<void>.value(null);
   }
+
+     @override
+     Future<void> receiveMediaSubmitBtn() async{
+       isLoading.value = ReceiveMediaLoadingType.parent;
+        try {
+      // Map<String, dynamic> receiveMediaRequestBody = moveMediaJson;
+      dynamic reponse =
+          await receiveMediaRepository.receiveMediaSubmit(jsonEncode(receiveMediaJson));
+
+          print('response/////////////////////////////////$reponse');
+      // if (reponse != null) {
+      //   if (reponse['message'] == 'Success') {
+      //     CustomSnackbar.showSuccess('Success');
+      //   } else if (reponse['message'] == 'The given data was invalid.') {
+      //     CustomSnackbar.showError('The given data was invalid.');
+      //   }
+      // }
+    } catch (e) {
+      print(e.toString());
+      e.toString();
+    } finally {
+      isLoading.value = ReceiveMediaLoadingType.hide;
+    }
+    return Future<void>.value(null);
+
+     }
+
+
+
+String generateReceiveMediaJSON() {
+  // Create a new map with the key "qrCodes" and its value as the list of scanned pigeonholes
+  receiveMediaJson = {
+    'qrCodes': scannedPigeonholes,
+  };
+  print(jsonEncode(receiveMediaJson));
+  return jsonEncode(receiveMediaJson);
+}
+
+
+
+
+
 }
 
 mixin ReceiveMediaInitializer {}
@@ -126,22 +138,32 @@ mixin GetMediaLocationsInitializer {
 
   /// API'S
   
-    Future<void> getMediaFile();
+    Future<void> getReceiveMediaFile();
 
 
-  Future<void> receiveMedia();
+  Future<void> receiveMediaSubmitBtn();
 
   /// call on yes of verification page
 
-  Future<void> getMediaLocations();
+ // Future<void> getMediaLocations();
+
+
 
   late ReceiveMediaRepository receiveMediaRepository;
 
   GetMediaLocationsModel getMediaLocationsModel = GetMediaLocationsModel();
   GetMediaFileModel getMediaFileModel =GetMediaFileModel();
+
+
+  RxString totalPigeonholeScanned = ''.obs;
 }
 
 mixin BottomSheetinitializer {
   TextEditingController numberTextEditingController =
-      TextEditingController(text: '2');
+      TextEditingController();
+
+
+      /// list which have scanned pigeon holes along with quantity
+         List<Map<String, dynamic>> scannedPigeonholes = [];
+ Map<String, dynamic> receiveMediaJson = {};
 }

@@ -175,7 +175,8 @@ class MoveMediaDetailPage extends GetView<MoveMediaController>{
 
  Widget _submitButton(){
   return CustomButtonWidget(onPressed: (){
-    Get.toNamed(AppRoutes.moveMediaListingPage);
+    //controller.moveMediaSubmitBtn();
+    //Get.toNamed(AppRoutes.moveMediaListingPage);
   },text: "Submit",);
  }
 }

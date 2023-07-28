@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
   flutter_riverpod: ^2.1.1
   flutter_svg: ^1.1.6
-  pinput: ^2.2.20
+  pinput:
   get: ^4.6.5
   qr_code_scanner: ^1.0.1
   logger: ^1.4.0

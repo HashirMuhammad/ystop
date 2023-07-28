@@ -4,39 +4,34 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:ystop_mystop/core/app/images.dart';
 import 'package:ystop_mystop/core/app/snackbar.dart';
 import 'package:ystop_mystop/core/widgets/custom_appbar.dart';
-import 'package:ystop_mystop/views/move_media/controller/move_media_controller.dart';
 
-import '../app/colors.dart';
-import '../app/styles.dart';
-import '../app/texts.dart';
-import 'custom_button.dart';
-import 'custom_text_field.dart';
+import '../../../core/app/colors.dart';
+import '../../../core/app/styles.dart';
+import '../../../core/app/texts.dart';
+import '../../../core/widgets/custom_button.dart';
+import '../../../core/widgets/custom_text_field.dart';
+import '../controller/move_media_controller.dart';
+import '../model/destination_pigeonhole_model.dart';
 
 
 
-enum ScanMode {Single,  Multiple
-}
-class QRCodeScannerWidget extends StatefulWidget {
+class MoveToPigeonHoleQRCodeScannerWidget extends StatefulWidget {
 
   final TextEditingController numberController;
   final Function() onPressedDoneBtn;
-  final ScanMode? scanMode ; // Default scan mode is single
-   bool isMoveMedia;
-   QRCodeScannerWidget({required this.numberController,required this.onPressedDoneBtn, this.scanMode = ScanMode.Single ,this.isMoveMedia = false,super.key});
+  const MoveToPigeonHoleQRCodeScannerWidget({required this.numberController,required this.onPressedDoneBtn,super.key});
   @override
 
-  _QRCodeScannerWidgetState createState() => _QRCodeScannerWidgetState();
+  _MoveToPigeonHoleQRCodeScannerWidgetState createState() => _MoveToPigeonHoleQRCodeScannerWidgetState();
 }
 
-class _QRCodeScannerWidgetState extends State<QRCodeScannerWidget>
+class _MoveToPigeonHoleQRCodeScannerWidgetState extends State<MoveToPigeonHoleQRCodeScannerWidget>
     with SingleTickerProviderStateMixin {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   QRViewController? controller;
   late AnimationController animationController;
   late Animation<double> animation;
-   bool sourcePigeonholeScanned = false; // Track if the source pigeonhole is scanned
-   String? sourcePigeonholeQRCode;
-
+  List<DestinationPigeonhole> destinationPigeonholes = [];
  Size? size;
   double? imageHeight;
   bool isFlashOn = false;
@@ -71,7 +66,7 @@ Widget build(BuildContext context) {
   return Scaffold(
     appBar: CustomAppBar(
       context: context,
-      title: "Scan Pigeonhole",
+      title: "Move to pigeonhole",
       appBarAction: IconButton(
         icon: Icon(
           isFlashOn ? Icons.flash_on : Icons.flash_off,
@@ -103,7 +98,7 @@ Widget build(BuildContext context) {
                   children: [
                     QRView(
                       key: qrKey,
-                      onQRViewCreated: _onQRViewCreated,
+                      onQRViewCreated:  _onQRViewCreated,
                     ),
                     Positioned.fill(
                       child: Container(
@@ -154,35 +149,38 @@ Widget build(BuildContext context) {
 
 
   void _onQRViewCreated(QRViewController controller) {
-         
 
     setState(() {
       this.controller = controller;
     });
 
     controller.scannedDataStream.listen((scanData) {
-       if(widget.isMoveMedia){
-          if (Get.find<MoveMediaController>().sourcePigeonholeQRCode == null) {
-        // Handle the scanned QR code data here
-        String qrCode = scanData.code!;
-        print('scandata////////////////// $qrCode');
+          String qrCode = scanData.code!;
 
-        // Shw a Snackbar message to indicate the source pigeonhole is scanned
-        CustomSnackbar.showSuccess('Source pigeohole scanned successfully.');
-         // Store the source pigeonhole QR code
-        setState(() {
-        Get.find<MoveMediaController>().sourcePigeonholeQRCode = scanData.code;
+      //  bool isAlreadyScanned = destinationPigeonholes.any(
+      //     (destination) => destination.qrCode == qrCode,
+      //   );
+
+        // if(isAlreadyScanned){
+        //   CustomSnackbar.showError('This pigeonhole has already been scanned. Enter its quantity');
+        // }
+        // else{
+                    if (Get.find<MoveMediaController>().destinationPigeoHole == null) {
+                       setState(() {
+        Get.find<MoveMediaController>().destinationPigeoHole = scanData.code;
         });
-      }
-    
+        if(!Get.isSnackbarOpen){
+         CustomSnackbar.showSuccess('Destination pigeonhole QRCode scanned successfully.');
 
-      print('sourcePigeonholeQRCode///////////${Get.find<MoveMediaController>().sourcePigeonholeQRCode}');
-    }
-    // Check if the source pigeonhole is already scanned
-    
+         }
+                    }
+      
 
+      //  }
+      print('destinationPigeoHole//////////////////////${Get.find<MoveMediaController>().destinationPigeoHole}');
+      // Handle the scanned QR code data here
     });
-   
+
   }
 
 

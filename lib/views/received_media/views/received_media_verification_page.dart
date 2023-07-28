@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ystop_mystop/core/app/snackbar.dart';
 import 'package:ystop_mystop/core/app/styles.dart';
 import 'package:ystop_mystop/core/widgets/custom_appbar.dart';
 import 'package:ystop_mystop/core/widgets/custom_button.dart';
@@ -9,6 +10,7 @@ import '../../../core/app/colors.dart';
 import '../../../core/app/images.dart';
 import '../../../core/app/texts.dart';
 import '../../../routes.dart';
+import '../../widgets/receive_media_scanner_widget.dart';
 
 class ReceivedMediaVerificationPage extends GetView<ReceiveMediaController>{
   const ReceivedMediaVerificationPage({super.key});
@@ -76,7 +78,19 @@ class ReceivedMediaVerificationPage extends GetView<ReceiveMediaController>{
      CustomButtonWidget(onPressed: (){}, text: AppTexts.no,backgroundColor: AppColors.primaryWhite,textColor: AppColors.primaryBlackColor,),
      const SizedBox(width: 5,),
           CustomButtonWidget(onPressed: (){
-                    Get.toNamed(AppRoutes.receivedMediaListingPage);
+
+            Get.to(ReceiveMediaScannerWidget( onPressedDoneBtn: () {
+              
+                controller.generateReceiveMediaJSON();
+                 if(controller.receiveMediaJson['qrCodes'].isNotEmpty){
+
+               Get.toNamed(AppRoutes.receivedMediaListingPage);               }
+               else{
+
+                CustomSnackbar.showError('You have to scan pigeon hole and enter the quantity.');
+               }
+
+              },));                  //  Get.toNamed(AppRoutes.receivedMediaListingPage);
 
           //  controller.getMediaLocationsListingAfterVerification();
             

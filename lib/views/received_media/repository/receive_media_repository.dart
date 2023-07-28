@@ -10,18 +10,18 @@ class ReceiveMediaRepository{
    _apiClient = ApiClient(environment: environment);
   }
 
-  Future<dynamic>  receiveMedia ( Map<String, dynamic> body){
-   return _apiClient.apiClientRequest(endPoint: kReceiveMediaAPI, body: body,method: 'POST');
+  Future<dynamic>  receiveMediaSubmit ( String body){
+   return _apiClient.apiClientRequest2(endPoint: kReceiveMediaOnSubmitBtnAPI, body: body,method: 'POST');
   }
 
 
 
 
  Future<dynamic>  getMediaLocations (){
-   return _apiClient.apiClientRequest(endPoint: kVerifyMediaAPI,method: 'GET');
+   return _apiClient.apiClientRequest(endPoint: kGetMediaLocationsAPI,method: 'GET');
   }
   
 Future<dynamic>  getMediaFile (){
-   return _apiClient.apiClientRequest(endPoint: kGetMediaFileAPI,method: 'GET');
+   return _apiClient.apiClientRequest(endPoint: kGetReceiveMediaFileAPI,method: 'GET');
   }
 }

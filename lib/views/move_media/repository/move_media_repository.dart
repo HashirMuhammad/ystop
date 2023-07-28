@@ -13,5 +13,14 @@ class MoveMediaRepository{
   Future<dynamic>  moveMediaScanQRCode (){
    return _apiClient.apiClientRequest(endPoint: kMoveMediaScanQrCodeAPI,method: 'GET');
   }
+
+  Future<dynamic>  getMediaLocations (){
+   return _apiClient.apiClientRequest(endPoint: kGetMediaLocationsAPI,method: 'GET');
+  }
+  
+  Future<dynamic>  moveMediaSubmitBtnApi (String body){
+   return _apiClient.apiClientRequest2(endPoint: kMoveMediaOnSubmitBtnAPI,body: body,method: 'POST');
+  }
+  
   
 }

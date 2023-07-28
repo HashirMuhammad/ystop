@@ -20,13 +20,13 @@ class ReceiveMediaScanQRPage extends GetView<ReceiveMediaController>{
         builder: (_)=> Stack(
           children: <Widget>[
             ScanQrCode(
-              onPressedScanQrCode: () {
+              onPressedScanQrCode: () async {
 
                
                 // Get.to(QRCodeScannerWidget(
                 //   numberController: controller.numberTextEditingController ,
                 //  onPressedDoneBtn: (){
-                 controller.getMediaFile();
+               await  controller.getReceiveMediaFile();
                  
                 //  },));
             

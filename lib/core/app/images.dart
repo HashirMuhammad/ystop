@@ -33,5 +33,6 @@ class AppImages {
 
         static const String qrDummy = 'assets/images/QrDummy.png';
 
- 
+         static const String tick = 'assets/images/tick.png';
+
 }

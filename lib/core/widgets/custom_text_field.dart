@@ -8,17 +8,21 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final Widget? prefixIcon;
   final Color? cursorColor;
-
+ final void Function(String)? onChanged;
+final String? Function(String?)? validator;
   const CustomTextField({
     required this.controller, required this.hintText, Key? key,
     this.prefixIcon,
     this.cursorColor,
+    this.onChanged,
+    this.validator
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller,
+      onChanged: onChanged ,
+     // controller: controller,
       decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(vertical: 22, horizontal: 16), // Padding around hint text
 
@@ -45,10 +49,13 @@ class CustomTextField extends StatelessWidget {
             color: AppColors.blueColor, // Set the focused border color to blue
           ),
         ),
-        focusColor: AppColors.blueColor
-      ),
+        focusColor: AppColors.blueColor,
+        
+        
+              ),
       
       cursorColor: cursorColor ?? AppColors.mainThemeColor,
+      validator: validator,
     );
   }
 }

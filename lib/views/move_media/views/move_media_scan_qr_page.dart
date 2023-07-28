@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ystop_mystop/core/app/texts.dart';
 import 'package:ystop_mystop/core/widgets/custom_appbar.dart';
-import 'package:ystop_mystop/core/widgets/qr_code_scanner_widget.dart';
 import 'package:ystop_mystop/core/widgets/scan_qr_code.dart';
 import 'package:ystop_mystop/routes.dart';
 import 'package:ystop_mystop/views/move_media/controller/move_media_controller.dart';

@@ -2,33 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:ystop_mystop/core/app/images.dart';
-import 'package:ystop_mystop/core/app/snackbar.dart';
 import 'package:ystop_mystop/core/widgets/custom_appbar.dart';
-import 'package:ystop_mystop/views/move_media/controller/move_media_controller.dart';
-
-import '../app/colors.dart';
-import '../app/styles.dart';
-import '../app/texts.dart';
-import 'custom_button.dart';
-import 'custom_text_field.dart';
+import 'package:ystop_mystop/core/widgets/custom_button.dart';
+import 'package:ystop_mystop/views/received_media/controller/received_media_controller.dart';
+import '../../core/app/colors.dart';
+import '../../core/app/snackbar.dart';
+import '../../core/app/styles.dart';
+import '../../core/app/texts.dart';
+import '../../core/widgets/custom_text_field.dart';
 
 
 
 enum ScanMode {Single,  Multiple
 }
-class QRCodeScannerWidget extends StatefulWidget {
+class ReceiveMediaScannerWidget extends StatefulWidget {
 
-  final TextEditingController numberController;
   final Function() onPressedDoneBtn;
-  final ScanMode? scanMode ; // Default scan mode is single
-   bool isMoveMedia;
-   QRCodeScannerWidget({required this.numberController,required this.onPressedDoneBtn, this.scanMode = ScanMode.Single ,this.isMoveMedia = false,super.key});
-  @override
 
-  _QRCodeScannerWidgetState createState() => _QRCodeScannerWidgetState();
+const ReceiveMediaScannerWidget({
+    required this.onPressedDoneBtn,
+    Key? key, // Add a Key parameter here
+  }) : super(key: key); // Move the key parameter to the constructor  @override
+
+ _ReceiveMediaScannerWidgetState createState() => _ReceiveMediaScannerWidgetState();
 }
 
-class _QRCodeScannerWidgetState extends State<QRCodeScannerWidget>
+class _ReceiveMediaScannerWidgetState extends State<ReceiveMediaScannerWidget>
     with SingleTickerProviderStateMixin {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   QRViewController? controller;
@@ -40,7 +39,11 @@ class _QRCodeScannerWidgetState extends State<QRCodeScannerWidget>
  Size? size;
   double? imageHeight;
   bool isFlashOn = false;
-
+   String scannedPigeonholesLength = '';
+String? _currentQRCode;
+int? _currentQuantity;
+   List<Map<String, dynamic>> scannedPigeonholes = [];
+TextEditingController numberController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -159,31 +162,85 @@ Widget build(BuildContext context) {
     setState(() {
       this.controller = controller;
     });
-
-    controller.scannedDataStream.listen((scanData) {
-       if(widget.isMoveMedia){
-          if (Get.find<MoveMediaController>().sourcePigeonholeQRCode == null) {
-        // Handle the scanned QR code data here
-        String qrCode = scanData.code!;
+ // Your QR code scanning logic here
+  controller.scannedDataStream.listen((scanData) {
+    String qrCode = scanData.code!;
         print('scandata////////////////// $qrCode');
 
-        // Shw a Snackbar message to indicate the source pigeonhole is scanned
-        CustomSnackbar.showSuccess('Source pigeohole scanned successfully.');
-         // Store the source pigeonhole QR code
-        setState(() {
-        Get.find<MoveMediaController>().sourcePigeonholeQRCode = scanData.code;
-        });
-      }
-    
+    // Check if the scanned pigeonhole is already in the list
 
-      print('sourcePigeonholeQRCode///////////${Get.find<MoveMediaController>().sourcePigeonholeQRCode}');
-    }
-    // Check if the source pigeonhole is already scanned
-    
 
-    });
+            _currentQRCode = qrCode;
+            if(!Get.isSnackbarOpen){
+      CustomSnackbar.showSuccess('This pigeonhole has been scanned.');
+
+            }
+
+  
+  });
    
+    setState(() {
+    });
   }
+
+   
+
+
+void _onTickButtonPressed() {
+  // When the user clicks the tick icon after entering quantity
+  // You can call this method from the tick icon's onPressed callback
+  // This method will store the QR code and quantity in the list
+  // Assuming you have a variable to store the currently entered QR code and quantity
+
+
+  if (_currentQRCode != null && _currentQuantity != null) {
+    // Add the scanned pigeonhole and quantity to the list
+    scannedPigeonholes.add({
+      'qrCode': _currentQRCode,
+      'quantity': _currentQuantity,
+    });
+// Update the scannedPigeonholesLength variable and trigger a rebuild of the UI
+  setState(() {
+    scannedPigeonholesLength = scannedPigeonholes.length.toString();
+  });
+
+    // Show a snackbar or toast message to indicate that the data is added to the list
+    CustomSnackbar.showSuccess('Pigeonhole and quantity added to the list.');
+    Get.find<ReceiveMediaController>().scannedPigeonholes = scannedPigeonholes;
+    // Clear the entered QR code and quantity variables for the next operation
+    _currentQRCode = null;
+    _currentQuantity = null;
+   
+       numberController.clear();
+       numberController = TextEditingController(text: "");
+  
+  }
+  else if(_currentQRCode == null && _currentQuantity == null){
+    if(!Get.isSnackbarOpen){
+ CustomSnackbar.showError('Please scan a pigeonhole and enter its quantity.');
+    }
+       
+
+  }
+  else if(_currentQuantity == null){
+    if(!Get.isSnackbarOpen){
+  CustomSnackbar.showError('Please enter quantity.');
+    }
+    
+
+  }
+   else {
+    if(!Get.isSnackbarOpen){
+CustomSnackbar.showError('Please scan a pigeonhole.');
+    }
+     
+  }
+}
+
+
+
+
+
 
 
   void _toggleFlash() {
@@ -192,6 +249,7 @@ Widget build(BuildContext context) {
       controller?.toggleFlash();
     });
   }
+
 Widget _bottomsheet(Size size) {
   return Stack(
     children: [
@@ -212,22 +270,56 @@ Widget _bottomsheet(Size size) {
             width: size.width,
             child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 18),
-              child: Column(
+              child: ListView(
+                shrinkWrap: true,
                 children: [
-                  const SizedBox(height: 60,),
-                    Text(
-                      "Or Enter Number",
-                      style: AppStyles.textStyleCustom.copyWith(fontSize: 22),
+                  const SizedBox(height: 40,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(scannedPigeonholesLength),
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: InkWell(
+                            onTap: (){
+                              _onTickButtonPressed();
+                            },
+                            child: Image.asset(AppImages.tick)),
+                        ),
+                      ),
+                    ],
+                  ),
+                    const SizedBox(height: 10,),
+                    Center(
+                      child: Text(
+                        "Or Enter Number",
+                        style: AppStyles.textStyleCustom.copyWith(fontSize: 22),
+                      ),
                     ),
                     SizedBox(height: 10),
                       CustomTextField(
-                        controller: widget.numberController,
+                        controller: numberController,
                         hintText: "Enter Here",
                         prefixIcon: Icon(Icons.draw_rounded),
+                        onChanged: (val){
+                          
+                           numberController.text = val;
+                           if(numberController.text.isNotEmpty){
+                          _currentQuantity =  int.parse(numberController.text);
+                          setState(() {
+                            
+                          });
+                          }
+                      
+                        },
+                      
+                        
                       ),
                         SizedBox(height: 20), // Added space after text field
                     Expanded(child: Container()), // Space filler
-                    _doneButton(widget.onPressedDoneBtn),
+                    Center(child: _doneButton(widget.onPressedDoneBtn)),
                      SizedBox(height: 25),  
                 ],
               ),
@@ -235,6 +327,7 @@ Widget _bottomsheet(Size size) {
           ),
         ),
       ),
+      
       Padding(
         padding: const EdgeInsets.only(top :12.0),
         child: Align(
@@ -258,6 +351,7 @@ Widget _bottomsheet(Size size) {
     ],
   );
 }
+}
  Widget _doneButton(Function() onPressed) {
     return CustomButtonWidget(
       text: AppTexts.done,
@@ -266,6 +360,6 @@ Widget _bottomsheet(Size size) {
     );
   }
 
-}
 
 
+    

@@ -13,41 +13,50 @@ class DestroyMediaConfirmationBottomSheet extends GetView<DestroyMediaController
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) => Container(
-        decoration: const BoxDecoration(
-          color: AppColors.primaryWhite,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(25),
-            topRight: Radius.circular(25)
-          ),
-        ),
-        height: constraints.maxHeight * 0.55,
-        child:  Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0),
-          child: Column(
-            children: [
-                const SizedBox(height: 20),
-               const Icon(Icons.warning_amber_outlined,size: 40),
-                const SizedBox(height: 10),
-                Text(
-                      AppTexts.confirmation,
-                      style: AppStyles.textStyleCustom.copyWith(fontSize: 22),
-                    ),
-                const SizedBox(height: 20),
-                     Text(
-                  AppTexts.destroyMediaConfrimation,
-                
-                style: AppStyles.exampleTextstyle.copyWith(fontSize: 18,
-                color: AppColors.primaryBlackColor,
-                fontWeight: FontWeight.w400),
-                textAlign: TextAlign.center,
-                ),
-                Expanded(child: Container()),
-                _verificationButtons(),
-                    SizedBox(height: 25),  
+    return WillPopScope(
+            onWillPop: () async{
+        controller.selectedIndex.value = -1;
+    controller.quantitityTextEditingController = TextEditingController();
+         controller.onTapDestroyMedia.value  = false;
 
-            ],
+         return true;
+      },
+      child: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) => Container(
+          decoration: const BoxDecoration(
+            color: AppColors.primaryWhite,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(25),
+              topRight: Radius.circular(25)
+            ),
+          ),
+          height: constraints.maxHeight * 0.55,
+          child:  Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: Column(
+              children: [
+                  const SizedBox(height: 20),
+                 const Icon(Icons.warning_amber_outlined,size: 40),
+                  const SizedBox(height: 10),
+                  Text(
+                        AppTexts.confirmation,
+                        style: AppStyles.textStyleCustom.copyWith(fontSize: 22),
+                      ),
+                  const SizedBox(height: 20),
+                       Text(
+                    AppTexts.destroyMediaConfrimation,
+                  
+                  style: AppStyles.exampleTextstyle.copyWith(fontSize: 18,
+                  color: AppColors.primaryBlackColor,
+                  fontWeight: FontWeight.w400),
+                  textAlign: TextAlign.center,
+                  ),
+                  Expanded(child: Container()),
+                  _verificationButtons(),
+                      SizedBox(height: 25),  
+    
+              ],
+            ),
           ),
         ),
       ),
@@ -58,9 +67,16 @@ class DestroyMediaConfirmationBottomSheet extends GetView<DestroyMediaController
   return  Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-     CustomButtonWidget(onPressed: (){}, text: AppTexts.no,backgroundColor: AppColors.primaryWhite,textColor: AppColors.primaryBlackColor,),
+     CustomButtonWidget(onPressed: () {
+       controller.selectedIndex.value = -1;
+    controller.quantitityTextEditingController = TextEditingController();
+         controller.onTapDestroyMedia.value  = false;
+      Get.back();
+     }, text: AppTexts.no,backgroundColor: AppColors.primaryWhite,textColor: AppColors.primaryBlackColor,),
      const SizedBox(width: 5,),
-          CustomButtonWidget(onPressed: (){}, text: AppTexts.yes),
+          CustomButtonWidget(onPressed: () async{
+          await  controller.destroyMediaaOnConfirmation();
+          }, text: AppTexts.yes),
 
     ],
   );
