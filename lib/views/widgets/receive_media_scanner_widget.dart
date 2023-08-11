@@ -42,7 +42,7 @@ class _ReceiveMediaScannerWidgetState extends State<ReceiveMediaScannerWidget>
    String scannedPigeonholesLength = '';
 String? _currentQRCode;
 int? _currentQuantity;
-   List<Map<String, dynamic>> scannedPigeonholes = [];
+ List<Map<String, dynamic>> scannedPigeonholes = [];
 TextEditingController numberController = TextEditingController();
   @override
   void initState() {

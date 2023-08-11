@@ -6,6 +6,7 @@ import 'package:ystop_mystop/core/widgets/custom_button.dart';
 import 'package:ystop_mystop/views/destroy_media/controller/destroy_media_controller.dart';
 
 import '../../../core/app/styles.dart';
+import '../../../core/widgets/custom_dialog_widget.dart';
 
 
 class DestroyMediaConfirmationBottomSheet extends GetView<DestroyMediaController> {
@@ -75,7 +76,17 @@ class DestroyMediaConfirmationBottomSheet extends GetView<DestroyMediaController
      }, text: AppTexts.no,backgroundColor: AppColors.primaryWhite,textColor: AppColors.primaryBlackColor,),
      const SizedBox(width: 5,),
           CustomButtonWidget(onPressed: () async{
-          await  controller.destroyMediaaOnConfirmation();
+    //      await  controller.destroyMediaaOnConfirmation();
+    
+        Get.back();
+       controller.selectedIndex.value = -1;
+    controller.quantitityTextEditingController = TextEditingController();
+         controller.onTapDestroyMedia.value  = false;
+          Get.dialog(
+            CustomDialogWidget(title: 'Media destroyed successfully',onPressed: (){
+              Get.back();
+            },)
+          );
           }, text: AppTexts.yes),
 
     ],

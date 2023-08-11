@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ystop_mystop/core/app/app_logs.dart';
 import 'package:ystop_mystop/core/app/app_preferences.dart';
 import 'package:ystop_mystop/core/app/snackbar.dart';
 import 'package:ystop_mystop/routes.dart';
@@ -42,6 +41,7 @@ class LoginController extends GetxController with LoginInitializer{
       if (reponse != null) {
        final LoginModel loginModel = LoginModel.fromJson(reponse);
         AppPreferences.saveAuthenticationData(loginModel);
+        AppPreferences.setApiToken(loginModel.result!.accessToken!);
        //  print(loginModel.toJson());
         Get.offNamed(AppRoutes.home);
 

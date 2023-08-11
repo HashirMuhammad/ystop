@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:get_storage/get_storage.dart';
 import 'package:ystop_mystop/views/login/model/login_model.dart';
 
@@ -16,7 +14,9 @@ class AppPreferences {
   static Future<void> removeApiToken() async {
     await _preferences.remove(apiTokenKey);
   }
-
+ static Future<void> setApiToken(String apiToken) {
+    return _preferences.write(apiTokenKey,apiToken);
+  }
   static String get getApiToken {
     return _preferences.read(apiTokenKey) ?? '';
   }

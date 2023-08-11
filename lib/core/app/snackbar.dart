@@ -10,7 +10,7 @@ class CustomSnackbar {
       message,
       backgroundColor: AppColors.redColor,
       colorText: AppColors.primaryWhite,
-      duration: Duration(seconds: 4),
+      duration: Duration(seconds: 2),
     );
     }
    
@@ -23,7 +23,7 @@ class CustomSnackbar {
       message,
       backgroundColor: AppColors.mainThemeColor,
       colorText: AppColors.primaryWhite,
-      duration: Duration(seconds: 4),
+      duration: Duration(seconds: 2),
     );
   }
   }

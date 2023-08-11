@@ -155,7 +155,7 @@ Widget build(BuildContext context) {
     });
 
     controller.scannedDataStream.listen((scanData) {
-          String qrCode = scanData.code!;
+//String qrCode = scanData.code!;
 
       //  bool isAlreadyScanned = destinationPigeonholes.any(
       //     (destination) => destination.qrCode == qrCode,

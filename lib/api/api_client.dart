@@ -17,6 +17,7 @@ class ApiClient {
     _baseUrl = environment['base_url'];
     httpClient = Dio(BaseOptions(baseUrl: _baseUrl,connectTimeout: 60 * 1000,receiveTimeout: 90 * 1000,followRedirects: true));
     // httpClient = Dio(BaseOptions(baseUrl: _baseUrl));
+    
     httpClient.interceptors.addAll({
       AppInterceptors(httpClient, environment),
     });
@@ -68,12 +69,12 @@ class ApiClient {
 
   Future<dynamic> apiClientRequest({  required String endPoint, required String method, Map<String, dynamic>? body }) async {
     try{
-         LoginModel? storedLoginModel = AppPreferences.getAuthenticationData();
+      //    LoginModel? storedLoginModel = AppPreferences.getAuthenticationData();
           
 
-        final options = Options(headers: {
-        'Authorization': 'Bearer ${storedLoginModel?.result?.accessToken}', // Add the authToken to the request headers
-      });
+      //   final options = Options(headers: {
+      //   'Authorization': 'Bearer ${storedLoginModel?.result?.accessToken}', // Add the authToken to the request headers
+      // });
 
 
       AppLogger.log('$endPoint baseUrl[$method]: ${_baseUrl + endPoint}');
@@ -84,13 +85,13 @@ class ApiClient {
         response = await httpClient.post(
           _baseUrl + endPoint,
           data: body,
-          options: options
+        //  options: options
         );
       } else {
         AppLogger.log('$endPoint params[$method]: ${_baseUrl + endPoint}');
           response = await httpClient.get(
           _baseUrl + endPoint,
-          options: options, // Pass the headers in the options
+    //      options: options, // Pass the headers in the options
         );
       }
       if (response.statusCode == 200) {

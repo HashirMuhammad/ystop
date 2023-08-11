@@ -148,3 +148,4 @@ class ConnectionClosedException extends DioError {
     return 'Connection Closed';
   }
 }
+

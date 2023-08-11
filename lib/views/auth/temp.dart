@@ -13,7 +13,7 @@ class _TempState extends ConsumerState<Temp> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+   // final Size size = MediaQuery.of(context).size;
     return Scaffold(
       key: _scaffoldKey,
       resizeToAvoidBottomInset: false,

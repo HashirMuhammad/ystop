@@ -11,6 +11,8 @@ import 'package:ystop_mystop/routes.dart';
 import 'package:ystop_mystop/views/fragments/job_list_fragment.dart';
 import 'package:ystop_mystop/views/home/controller/home_controller.dart';
 
+import '../../job_list/views/fragments/job_list_fragment.dart';
+
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
 
@@ -90,11 +92,12 @@ class HomeView extends GetView<HomeController> {
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).push<void>(
-                      CupertinoPageRoute<void>(
-                          builder: (BuildContext context) =>
-                              const JobListFragment()),
-                    );
+                    Get.to(JobListFragment());
+                    // Navigator.of(context).push<void>(
+                    //   CupertinoPageRoute<void>(
+                    //       builder: (BuildContext context) =>
+                    //           const JobListFragment()),
+                    // );
                   },
                   child: Container(
                     width: size.width * 0.43,

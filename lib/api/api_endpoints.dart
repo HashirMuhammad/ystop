@@ -21,3 +21,14 @@ const String kReceiveMediaOnSubmitBtnAPI = '/api/media/receive/2CKDT4ZGEaQxsIXze
 
 /// destroy media
 const String kDestroyMediaOnConfirmation = '/api/media/destroy/8n3zdJDJ6FNGYzDnI1RsMdzylWtnfC4u7jOKWzqS';
+
+
+
+
+/// destroy media
+
+const String kGetAllCurrentJobList = '/api/jobLists';
+const String kGetAllJobListByStatus = '/api/jobLists/status/new';
+
+const String kGetSingleJobListById = '?include[]=items&include[]=location';
+

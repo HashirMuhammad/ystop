@@ -4,6 +4,7 @@ import 'package:ystop_mystop/core/app/styles.dart';
 
 import '../app/colors.dart';
 
+// ignore: must_be_immutable
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? appBarColor;
   final Color? leadingIconColor;
@@ -12,6 +13,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? appBarAction;
   final String title;
   VoidCallback? onLeadingPressed;
+  final PreferredSizeWidget? bottomWidget;
+  final bool isBottomWidget; 
+
 
   CustomAppBar({
     required BuildContext context,
@@ -22,6 +26,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.titleColor,
     this.leadingIconColor,
     this.onLeadingPressed,
+    this.bottomWidget,
+    this.isBottomWidget = false,
     Key? key,
   }) : super(key: key);
 
@@ -53,6 +59,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           style: AppStyles.textStyleCustom.copyWith(color: titleColor ?? AppColors.primaryBlackColor),
         ),
         centerTitle: true,
+        bottom: isBottomWidget ? bottomWidget : null,
       ),
     );
   }
