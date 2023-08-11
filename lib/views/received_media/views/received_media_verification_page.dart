@@ -10,7 +10,7 @@ import '../../../core/app/colors.dart';
 import '../../../core/app/images.dart';
 import '../../../core/app/texts.dart';
 import '../../../routes.dart';
-import '../../widgets/receive_media_scanner_widget.dart';
+import '../widgets/receive_media_scanner_widget.dart';
 
 class ReceivedMediaVerificationPage extends GetView<ReceiveMediaController>{
   const ReceivedMediaVerificationPage({super.key});
