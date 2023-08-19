@@ -10,17 +10,20 @@ class CustomTextField extends StatelessWidget {
   final Color? cursorColor;
  final void Function(String)? onChanged;
 final String? Function(String?)? validator;
+final bool? readOnly;
   const CustomTextField({
     required this.controller, required this.hintText, Key? key,
     this.prefixIcon,
     this.cursorColor,
     this.onChanged,
-    this.validator
+    this.validator,
+    this.readOnly
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: readOnly ?? false,
       onChanged: onChanged ,
      // controller: controller,
       decoration: InputDecoration(

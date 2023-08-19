@@ -11,7 +11,7 @@ import '../model/get_single_job_list.dart';
 
 enum JobListLoadingType { parent, hide }
 
-class JobListController extends GetxController with CurrentJobListInitializer, CompletedJobListInitializer,SelectedJobList{
+class JobListController extends GetxController with CurrentJobListInitializer, CompletedJobListInitializer,SelectedJobList,JobDetail,SelectPigeonHoleSheet , SelectedMediaSheet{
 
 
   @override
@@ -85,7 +85,7 @@ class JobListController extends GetxController with CurrentJobListInitializer, C
   @override
   Future<void> getSingleJobList(int id) async{
        isLoading.value = JobListLoadingType.parent;
-    try {
+    try { 
       dynamic response = await _jobListRepository.getSingleJobList(id);
       if(response !=null){
         getSingleJobListModel = GetSingleJobList.fromJson(response);
@@ -103,7 +103,12 @@ class JobListController extends GetxController with CurrentJobListInitializer, C
     isLoading.value = JobListLoadingType.hide;
    }
 
- return Future<void>.value(null);
+ return Future<void>.value();
+  }
+  
+  @override
+  Future<void> getMediaLocaions(int id) {
+    return Future<void>.value();
   }
 
 
@@ -158,5 +163,25 @@ TextEditingController selectedJobTitleSearchEditingController = TextEditingContr
 /// model
 
 GetSingleJobList getSingleJobListModel = GetSingleJobList();
+
+}
+
+mixin JobDetail{
+  
+RxBool onTapJobDetail = false.obs;
+RxInt selectedIndex = RxInt(-1);
+
+/// get single job list
+ Future<void> getMediaLocaions(int id);
+}
+
+
+mixin SelectPigeonHoleSheet{
+
+}
+  
+mixin SelectedMediaSheet{
+ 
+ RxInt radioBtnValue = 2.obs; 
 
 }

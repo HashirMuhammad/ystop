@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 import 'package:ystop_mystop/core/app/styles.dart';
 import 'package:ystop_mystop/core/widgets/loading_widget.dart';
 import 'package:ystop_mystop/views/job_list/views/selected_job/update_job_list_status_bottom_sheet.dart';
@@ -77,8 +76,8 @@ class SelectedJobPage extends GetView<JobListController> {
 
           return Padding(
             padding: EdgeInsets.only(
-              left: MediaQuery.of(context).size.width * 0.08,
-              right: MediaQuery.of(context).size.width * 0.08,
+              left: size.width * 0.08,
+              right: size.width * 0.08,
             ),
             child: Column(
               children: [

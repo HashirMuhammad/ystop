@@ -3,11 +3,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/state_manager.dart';
 import 'package:ystop_mystop/views/job_list/controller/job_list_controller.dart';
 
-import '../../core/app/colors.dart';
-import '../../core/app/styles.dart';
-import '../../core/app/svg.dart';
-import '../../core/app/texts.dart';
-import '../../core/widgets/loading_widget.dart';
+import '../../../../core/app/colors.dart';
+import '../../../../core/app/styles.dart';
+import '../../../../core/app/svg.dart';
+import '../../../../core/app/texts.dart';
+import '../../../../core/widgets/loading_widget.dart';
 
 class CompletedTabFragment extends GetView<JobListController> {
   const CompletedTabFragment({super.key});

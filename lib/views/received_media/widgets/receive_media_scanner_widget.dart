@@ -460,16 +460,16 @@ Widget build(BuildContext context) {
                       key: qrKey,
                       onQRViewCreated: _onQRViewCreated,
                     ),
-                    Positioned.fill(
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: SizedBox(
-                          width: size!.width * 0.8,
-                          height: size!.height * 0.6,
-                          child: Image.asset(AppImages.qrDummy),
-                        ),
-                      ),
-                    ),
+                    // Positioned.fill(
+                    //   child: Container(
+                    //     alignment: Alignment.center,
+                    //     child: SizedBox(
+                    //       width: size!.width * 0.8,
+                    //       height: size!.height * 0.6,
+                    //       child: Image.asset(AppImages.qrDummy),
+                    //     ),
+                    //   ),
+                    // ),
                     AnimatedBuilder(
                       animation: animationController,
                       builder: (context, child) {
@@ -622,8 +622,8 @@ Widget _bottomsheet(Size size) {
             width: size.width,
             child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 18),
-              child: ListView(
-                shrinkWrap: true,
+              child: Column(
+             //   shrinkWrap: true,
                 children: [
                   const SizedBox(height: 40,),
                   Row(

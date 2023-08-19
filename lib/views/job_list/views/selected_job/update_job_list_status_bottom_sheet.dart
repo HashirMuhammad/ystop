@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:ystop_mystop/core/widgets/cusom_date_picker.dart';
 import 'package:ystop_mystop/core/widgets/custom_button.dart';
 import 'package:ystop_mystop/views/job_list/controller/job_list_controller.dart';
+import 'package:ystop_mystop/views/job_list/views/selected_job/job_detail_page.dart';
 
 import '../../../../core/app/colors.dart';
 import '../../../../core/app/styles.dart';
@@ -64,7 +65,7 @@ class UpdateJobListStatusStatusBottomSheet extends GetView<JobListController> {
     return CustomButtonWidget(
       text: AppTexts.submit,
       onPressed: () {
-     
+      Get.to(JobDetailPage());
       
       },
       backgroundColor: AppColors.mainThemeColor,

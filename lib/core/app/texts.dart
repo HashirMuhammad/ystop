@@ -28,6 +28,16 @@ reset your password''';
   static const String homeDestroy = 'Destroy';
   static const String homeMoveMedia = 'Move Media';
 
+
+
+  /// home 2
+    static const String postingMedia = 'Posting Media';
+    static const String dashboard = 'Dashboard';
+    static const String maintainance = 'Maintenance';
+    static const String generalTask = 'General Task';
+
+    static const String jobListId = 'Joblist ID';
+
   //jobLists-texts
   static const String jobList = 'Job List';
   static const String jobListSearch = 'Search By Council';
@@ -66,6 +76,7 @@ reset your password''';
 /// btn text
    static const String scanQrCode = 'Scan QR Code';
    static const String done = 'Done';
+   static const String next = 'Next';
 
 
 /// error text

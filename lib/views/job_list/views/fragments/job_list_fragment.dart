@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
-import 'package:ystop_mystop/views/fragments/completed_tab_fragment.dart';
-import 'package:ystop_mystop/views/fragments/current_tab_fragment.dart';
+import 'package:ystop_mystop/views/job_list/views/fragments/completed_tab_fragment.dart';
+import 'package:ystop_mystop/views/job_list/views/fragments/current_tab_fragment.dart';
 import 'package:ystop_mystop/views/job_list/controller/job_list_controller.dart';
 
 import '../../../../core/app/colors.dart';

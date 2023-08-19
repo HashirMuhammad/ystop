@@ -6,14 +6,11 @@ import 'package:ystop_mystop/core/app/images.dart';
 import 'package:ystop_mystop/core/app/styles.dart';
 import 'package:ystop_mystop/core/app/svg.dart';
 import 'package:ystop_mystop/core/app/texts.dart';
-import 'package:ystop_mystop/routes.dart';
 import 'package:ystop_mystop/views/home/controller/home_controller.dart';
+import '../../home2/posting_media/views/posting_media_listing_page.dart';
 
-import '../../job_list/views/fragments/job_list_fragment.dart';
-import 'home_view2.dart';
-
-class HomeView extends GetView<HomeController> {
-  const HomeView({super.key});
+class HomeView2 extends GetView<HomeController> {
+  const HomeView2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +88,7 @@ class HomeView extends GetView<HomeController> {
               children: [
                 InkWell(
                   onTap: () {
-                    Get.to(JobListFragment());
+                   Get.to(PostingMediaListingPage());
                     // Navigator.of(context).push<void>(
                     //   CupertinoPageRoute<void>(
                     //       builder: (BuildContext context) =>
@@ -115,7 +112,7 @@ class HomeView extends GetView<HomeController> {
                           height: size.height * 0.03,
                         ),
                         Text(
-                          AppTexts.homeJobList,
+                          AppTexts.postingMedia,
                           style: AppStyles.homeCategory,
                         )
                       ],
@@ -124,7 +121,7 @@ class HomeView extends GetView<HomeController> {
                 ),
                 InkWell(
                   onTap: (){
-                    Get.toNamed(AppRoutes.receivedMediaScanQr);
+          //          Get.toNamed(AppRoutes.receivedMediaScanQr);
                   },
                   child: SizedBox(
                     width: size.width * 0.43,
@@ -137,7 +134,7 @@ class HomeView extends GetView<HomeController> {
                           height: size.height * 0.03,
                         ),
                         Text(
-                          AppTexts.homeReceivedMedia,
+                          AppTexts.dashboard,
                           style: AppStyles.homeCategory,
                         )
                       ],
@@ -154,7 +151,7 @@ class HomeView extends GetView<HomeController> {
               children: [
                 InkWell(
                   onTap: (){
-                  Get.toNamed(AppRoutes.moveMediaScanQrPage);
+              //    Get.toNamed(AppRoutes.moveMediaScanQrPage);
                     
                   },
                   child: SizedBox(
@@ -168,7 +165,7 @@ class HomeView extends GetView<HomeController> {
                           height: size.height * 0.03,
                         ),
                         Text(
-                          AppTexts.homeMoveMedia,
+                          AppTexts.maintainance,
                           style: AppStyles.homeCategory,
                         )
                       ],
@@ -177,7 +174,7 @@ class HomeView extends GetView<HomeController> {
                 ),
                 InkWell(
                   onTap: (){
-                     Get.toNamed(AppRoutes.destroyMediaScanQrPage);
+             //        Get.toNamed(AppRoutes.destroyMediaScanQrPage);
                     
                   },
                   child: SizedBox(
@@ -188,7 +185,7 @@ class HomeView extends GetView<HomeController> {
                       children: [
                         Image.asset(AppImages.homeDestroy),
                         Text(
-                          AppTexts.homeDestroy,
+                          AppTexts.generalTask,
                           style: AppStyles.homeCategory,
                         )
                       ],
@@ -203,8 +200,7 @@ class HomeView extends GetView<HomeController> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.mainThemeColor,
         onPressed: () {
-          Get.to(HomeView2());
-
+          
         },
         child: const Icon(Icons.arrow_forward),
       ),

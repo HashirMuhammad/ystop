@@ -5,7 +5,7 @@ import '../core/app/app_preferences.dart';
 import '../views/login/model/login_model.dart';
 import 'api_interceptor.dart';
 
-
+ 
 
 class ApiClient {
   late String _baseUrl;

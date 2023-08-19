@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:ystop_mystop/routes.dart';
@@ -47,6 +48,11 @@ class App extends StatelessWidget {
        AppRoutes.forgotPasswordPage: (context) => const ForgotPasswordView(),
 
     };
+    
+     SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ]);
 
     return GetMaterialApp(
       title: 'yStop MyStop',
