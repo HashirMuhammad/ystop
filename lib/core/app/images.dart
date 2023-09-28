@@ -35,5 +35,17 @@ class AppImages {
 
          static const String tick = 'assets/images/tick.png';
          static const String successIcon = 'assets/images/success_icon.png';
+         // selection screen images
+         static const String postingMedia = 'assets/images/postingMedia.png';
+         static const String dashboard = 'assets/images/dashboardd.png';
+         static const String Maintenence = 'assets/images/maintenence.png';
+         static const String GeneralTask = 'assets/images/generalTask.png';
+         static const String rectangle = 'assets/images/Rectangle4.png';
 
+  //camera Icon
+  static const String cameraIcon = 'assets/svgs/camera_icon.svg';
+  static const String checkIconIcon = 'assets/svgs/check_icon.svg';
 }
+
+
+

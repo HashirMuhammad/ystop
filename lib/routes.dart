@@ -28,8 +28,23 @@ class AppRoutes {
 
         /// forgot password
         static const String forgotPasswordPage = '/forgotPasswordPage';
+        //MainSelection
+        static const String mainSelectionPage = '/mainSelectionPage';
+        //postingMedia
+        static const String postingMedia = '/postingMediaPages';
+        //joblist id
+        static const String joblistidpage = '/joblistidpage';
+ // employCounterPage
+        static const String employCounterPage = '/employCounterPage';
+        static const String mediaAfterAccept = '/mediaAfterAccept';
+        static const String genericScanView = '/genericScanView';
+        static const String positionMediaListView = '/positionMediaListView';
 
-
+ ///postedMedia
+ static const String postedMediaPage = '/postedMediaPage';
+ static const String otherMaintenancePage = '/otherMaintenancePage';
+ static const String viewAssetProgressView = '/viewAssetProgressView';
+ static const String createMaintenseView = '/createMaintenseView';
 }
 
 

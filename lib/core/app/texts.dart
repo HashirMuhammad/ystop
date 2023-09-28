@@ -82,4 +82,12 @@ reset your password''';
 /// error text
 
 static const String someThingWentWrong = 'Something went wrong';
+//mainselection
+static const String PostingMedia = 'Posting Media';
+static const String dashboardMain = 'Dashboard';
+static const String Maintenence = 'Maintenenece';
+static const String GeneralTask = 'General Task';
+
+  static const String listMaintenance = 'List Maintenance';
+
 }

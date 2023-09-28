@@ -27,6 +27,7 @@ class AppColors {
   static const Color primaryBlackColor = Color.fromRGBO(0, 0, 0, 1);
   static const Color primaryGreyColor = Color.fromRGBO(111, 111, 112, 1);
     static const Color greyColor = Color.fromRGBO(185, 195, 199,1);
+  static const Color greyBtnColor = Color.fromRGBO(244, 244, 244, 1);
 
   //#CCD1D1
   static const Color primaryGreenColor = Color.fromRGBO(27, 138, 17, 1);

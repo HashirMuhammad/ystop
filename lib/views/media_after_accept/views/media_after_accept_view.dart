@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ystop_mystop/core/app/colors.dart';
+import 'package:ystop_mystop/core/app/images.dart';
 import 'package:ystop_mystop/core/app/texts.dart';
 import 'package:ystop_mystop/core/widgets/custom_appbar.dart';
 import 'package:ystop_mystop/routes.dart';
@@ -8,8 +9,8 @@ import 'package:ystop_mystop/views/job_list/controller/job_list_controller.dart'
 
 import '../../../../core/app/styles.dart';
 
-class JoblistIDPage extends GetView<JobListController> {
-  const JoblistIDPage({super.key});
+class MediaAfterAccept extends GetView<JobListController> {
+  MediaAfterAccept({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +47,10 @@ class JoblistIDPage extends GetView<JobListController> {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
-            child: InkWell(onTap: (){
-                Get.toNamed(AppRoutes.employCounterPage);
-            },
+            child: InkWell(
+              onTap: () {
+                // Get.toNamed(AppRoutes.employCounterPage);
+              },
               child: Card(
                 child: Container(
                   color: AppColors.primaryJobListContainerColor,
@@ -68,7 +70,8 @@ class JoblistIDPage extends GetView<JobListController> {
                         verticalSpace,
                         Text(
                           "Status:",
-                          style: AppStyles.textStyleCustom.copyWith(color: AppColors.mainThemeColor),
+                          style:
+                              AppStyles.textStyleCustom.copyWith(color: AppColors.mainThemeColor),
                         ),
                         verticalSpace,
                         horizontalRow(title: "Posting", descripion: "2"),
@@ -76,6 +79,25 @@ class JoblistIDPage extends GetView<JobListController> {
                         horizontalRow(title: "Leave", descripion: "3"),
                         verticalSpace,
                         horizontalRow(title: "Move", descripion: "3"),
+                        verticalSpace,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            InkWell(onTap: (){
+                              Get.toNamed(AppRoutes.genericScanView);
+                            },
+                              child: Container(
+                                height: 34,
+                                width: 34,
+                                decoration: BoxDecoration(
+                                    color: AppColors.mainThemeColor,
+                                    borderRadius: BorderRadius.circular(16)),
+                                child: Image(image: AssetImage(AppImages.scanImage)),
+                              ),
+                            ),
+                          ],
+                        ),
+                        verticalSpace,
                       ],
                     ),
                   ),
