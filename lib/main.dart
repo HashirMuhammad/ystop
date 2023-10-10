@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:ystop_mystop/routes.dart';
+import 'package:ystop_mystop/views/auth/splash.dart';
 import 'package:ystop_mystop/views/auth/verifying_forgot_password_otp.dart';
 import 'package:ystop_mystop/views/destroy_media/views/destroy_media_listing.dart';
 import 'package:ystop_mystop/views/destroy_media/views/destroy_media_scan_qr_code_page.dart';
@@ -29,10 +30,12 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Map<String, WidgetBuilder> appRoutes = {
+      AppRoutes.splash: (context) => Splash(),
       AppRoutes.login: (context) => const LoginView(),
       AppRoutes.home: (context) => const HomeView(),
       // AppRoutes.forgotPassword: (context) => const ForgotPasswordView(),
-      AppRoutes.receivedMediaScanQr: (context) => const ReceiveMediaScanQRPage(),
+      AppRoutes.receivedMediaScanQr: (context) =>
+          const ReceiveMediaScanQRPage(),
       AppRoutes.verifiyingForgotPasswordOTP: (context) =>
           const VerifyingForgotPasswordOTPView(),
       AppRoutes.receivedMediaVerificationPage: (context) =>
@@ -41,18 +44,20 @@ class App extends StatelessWidget {
           const ReceivedMediaListing(),
       AppRoutes.moveMediaDetailPage: (context) => const MoveMediaDetailPage(),
       AppRoutes.moveMediaListingPage: (context) => const MoveMediaListing(),
-       AppRoutes.destroyMediaListingPage: (context) => const DestroyMediaListing(),
-       AppRoutes.moveMediaScanQrPage: (context) => const MoveMediaMediaScanQRPage(),
-       AppRoutes.destroyMediaScanQrPage: (context) => const DestroyMediaScanQRPage(),
+      AppRoutes.destroyMediaListingPage: (context) =>
+          const DestroyMediaListing(),
+      AppRoutes.moveMediaScanQrPage: (context) =>
+          const MoveMediaMediaScanQRPage(),
+      AppRoutes.destroyMediaScanQrPage: (context) =>
+          const DestroyMediaScanQRPage(),
 
-       AppRoutes.forgotPasswordPage: (context) => const ForgotPasswordView(),
-
+      AppRoutes.forgotPasswordPage: (context) => const ForgotPasswordView(),
     };
-    
-     SystemChrome.setPreferredOrientations([
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-      ]);
+
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
 
     return GetMaterialApp(
       title: 'yStop MyStop',
@@ -64,7 +69,8 @@ class App extends StatelessWidget {
       routes: appRoutes,
       //  routes: Routes.routes,
       //   getPages: AppPages.pages,
-      initialRoute: AppRoutes.login,
+      // Splash
+      initialRoute: AppRoutes.splash,
     );
   }
 }
